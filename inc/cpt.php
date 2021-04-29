@@ -31,6 +31,12 @@ if ( ! function_exists('thfo_cpt_saint') ) {
 			'Saints_list_navigation' => __( 'Saints list navigation', 'saint-du-jour' ),
 			'filter_Saints_list'     => __( 'Filter Saints list', 'saint-du-jour' ),
 		);
+		$rewrite = array(
+			'slug'                  => 'saint-du-jour',
+			'with_front'            => true,
+			'pages'                 => true,
+			'feeds'                 => true,
+		);
 		$args = array(
 			'label'                 => __( 'Saint du jour', 'saint-du-jour' ),
 			'description'           => __( 'Post Type Description', 'saint-du-jour' ),
@@ -48,6 +54,7 @@ if ( ! function_exists('thfo_cpt_saint') ) {
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
 			'capability_type'       => 'page',
+			'rewrite'               => $rewrite,
 			'menu_icon' => 'dashicons-id-alt'
 		);
 		register_post_type( 'saint', $args );
