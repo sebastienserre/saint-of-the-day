@@ -47,7 +47,7 @@ function thfo_sod_genesis() {
  * Display Saint of the day
  */
 
-function saint_display() {
+function get_saint_display() {
 
 	$cur_date = date( 'md' );
 
@@ -69,9 +69,10 @@ function saint_display() {
 // The Query
 	$query = new WP_Query( $args );
 	//var_dump($query);
-
+	ob_start();
 // The Loop
 	if ( $query->have_posts() ) {
+
 		while ( $query->have_posts() ) {
 			$query->the_post(); ?>
             <div class="saint-jour"> <?php
@@ -88,4 +89,12 @@ function saint_display() {
 
 // Restore original Post Data
 	wp_reset_postdata();
+
+    return ob_get_clean();
 }
+
+function saint_display(){
+    echo get_saint_display();
+}
+
+add_shortcode( 'display_saint', 'get_saint_display' );
